@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Tree-ify!</title>
+    <style>
+      .controls {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+
+        padding: 20px;
+        border-radius: 20px;
+        box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+
+        font-family: "Arial";
+        font-size: 14px;
+
+        text-align: center;
+        background-color: white;
+      }
+
+      .controls input[type=text] {
+        font-size: 14px;
+        width: 25px;
+      }
+
+      .controls button {
+        padding: 5px;
+        border-radius: 5px;
+        background-color: mediumaquamarine;
+        border-color: mediumaquamarine;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="sorter">
+    </canvas>
+    <div class="controls">
+      <span>No. of Cards : <input type="text" value="52" id="cardNo" max="52" min="0" /></span><br><br>
+      <span>Sorted? :   <input type="checkbox" id="isSorted" /></span><br><br>
+      <button onclick="newTree()">Tree-ify</button>
+    </div>
+  </body>
+  <script type="text/javascript" src="fabric.min.js"></script>
+  <script type="text/javascript" src="trees.js"></script>
+  <script>
+    const DEFAULT_SORTED = false;
+    const DEFAULT_NUM = 36;
+    let tree = new CardTree(DEFAULT_SORTED, DEFAULT_NUM);
+
+    function newTree() {
+      let nodeNum = document.getElementById('cardNo').value;
+      let isSorted = document.getElementById('isSorted').checked;
+
+      tree = new CardTree(isSorted, (nodeNum > 0 && nodeNum <= 52) ? nodeNum : 52);
+    }
+  </script>
+</html>
